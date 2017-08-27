@@ -1,5 +1,6 @@
 SoonTM
-~~
+
+
 # Restcord
 
 [![PyPI](https://img.shields.io/pypi/v/restcord.svg)](https://pypi.python.org/pypi/restcord/)
@@ -39,4 +40,3 @@ Usually `pip` will handle these for you.
 ## Related Projects
 
 - [discord.py](https://github.com/rapptz/discord.py)
-~~

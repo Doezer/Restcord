@@ -1,5 +1,6 @@
 from setuptools import setup
 import re, os, sys
+from restcord import __version__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -9,10 +10,7 @@ requirements = []
 with open('requirements.txt') as f:
   requirements = f.read().splitlines()
 
-version = ''
-with open('restcord/__init__.py') as f:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
-
+version = __version__
 if not version:
     raise RuntimeError('version is not set')
 
