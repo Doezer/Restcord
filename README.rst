@@ -33,6 +33,33 @@ Quick Example
 .. code:: py
 
     import restcord
+    import asyncio
+
+    loop = asyncio.get_event_loop()
+    client = restcord.Restcord(token="Your token here")
+
+    async def test():
+        guild = await client.get_guild("Some guild id of a guild that ur bot/user account is in")
+        print(guild.__dict__)
+
+    loop.run_until_complete(test())
+
+For user accounts:
+~~~~~~~~~~~~~~~~~~
+
+.. code:: py
+
+    import restcord
+    import asyncio
+
+    loop = asyncio.get_event_loop()
+    client = restcord.Restcord(token="Your token here", selfbot=True)
+
+    async def test():
+        guild = await client.get_guild("Some guild id of a guild that ur bot/user account is in")
+        print(guild.__dict__)
+
+    loop.run_until_complete(test())
 
 Requirements
 ------------
