@@ -1,4 +1,6 @@
 import aiohttp
+from restcord import __version__ as version
+from restcord import __github__ as github
 
 BASE_URL = "https://discordapp.com/api/v6"
 
@@ -13,6 +15,7 @@ class HTTPClient:
 		if not self.client.selfbot:
 			token = "Bot {}".format(token)
 		headers['Authorization'] = token
+		headers['User-Agent'] = "RestCord Python ({}, v{})".format(github, version)
 		return headers
 
 	async def get(self, endpoint):

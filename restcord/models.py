@@ -1,4 +1,5 @@
 from enum import Enum
+import json
 
 CDN_URL = "https://cdn.discordapp.com/"
 
@@ -65,18 +66,26 @@ def get_from_kwargs(kwargs, key):
         return None
     return kwargs[key]
 
-def get_overwrites(overwrites):
-    realO = []
-    for o in overwrites:
-        realO.append(Overwrite(o))
-    return realO
+class Emoji:
+    id = None
+    name = None
+    roles = None
+    require_colons = None
+    managed = None
 
-def get_recipients(recipients):
-    realR = []
-    for r in recipients:
-        realO.append(User(r))
-    return realR
+    def __init__(self, **kwargs):
+        if kwargs:
+            self.id = get_from_kwargs(kwargs, "id")
+            self.name = get_from_kwargs(kwargs, "name")
+            self.roles = get_from_kwargs(kwargs, "roles")
+            self.require_colons = get_from_kwargs(kwargs, "require_colons")
+            self.managed = get_from_kwargs(kwargs, "managed")
 
+def get_emojis(emojis):
+    realE = []
+    for e in emojis:
+        realE.append(Emoji(r))
+    return realE
 
 class Channel:
     id = None
@@ -110,6 +119,12 @@ class Channel:
             self.recipients = get_from_kwargs(kwargs, "recipients")
             self.icon = get_from_kwargs(kwargs, "icon")
             self.owner_id = get_from_kwargs(kwargs, "owner_id")
+
+def get_channels(chans):
+    realC = []
+    for c in chans:
+        realC.append(Channel(c))
+    return realC
 
 class Message:
     id = None
@@ -176,42 +191,38 @@ class Overwrite:
             self.allow = get_from_kwargs(kwargs, "allow")
             self.deny = get_from_kwargs(kwargs, "deny")
 
-class Embed:
-    title = None
-    type = None
-    description = None
-    url = None
-    timestamp = None
+class Role:
+    id = None
+    name = None
     color = None
-    footer = None
-    image = None
-    thumbnail = None
-    video = None
-    provider = None
-    author = None
-    fields = None
+    hoist = None
+    position = None
+    permissions = None
+    managed = None
+    mentionable = None
 
     def __init__(self, **kwargs):
         if kwargs:
-            self.title = get_from_kwargs(kwargs, "title")
-            self.type = get_from_kwargs(kwargs, "type")
-            self.description = get_from_kwargs(kwargs, "description")
-            self.url = get_from_kwargs(kwargs, "url")
-            self.timestamp = get_from_kwargs(kwargs, "timestamp")
+            self.id = get_from_kwargs(kwargs, "id")
+            self.name = get_from_kwargs(kwargs, "name")
             self.color = get_from_kwargs(kwargs, "color")
-            self.footer = EmbedFooter(get_from_kwargs(kwargs, "footer"))
-            self.image = EmbedImage(get_from_kwargs(kwargs, "image"))
-            self.thumbnail = EmbedThumbnail(get_from_kwargs(kwargs, "thumbnail"))
-            self.video = EmbedVideo(get_from_kwargs(kwargs, "video"))
-            self.provider = EmbedProvider(get_from_kwargs(kwargs, "provider"))
-            self.author = EmbedAuthor(get_from_kwargs(kwargs, "author"))
-            self.fields = get_fields(get_from_kwargs(kwargs, "fields"))
+            self.hoist = get_from_kwargs(kwargs, "hoist")
+            self.position = get_from_kwargs(kwargs, "position")
+            self.permissions = get_from_kwargs(kwargs, "permissions")
+            self.managed = get_from_kwargs(kwargs, "managed")
+            self.mentionable = get_from_kwargs(kwargs, "mentionable")
 
-def get_fields(fields):
-    realFields = []
-    for field in fields:
-        realFields.append(EmbedField(field))
-    return realFields
+def get_roles(roles):
+    realR = []
+    for r in roles:
+        realR.append(Role(r))
+    return realR
+
+def get_overwrites(overwrites):
+    realO = []
+    for o in overwrites:
+        realO.append(Overwrite(o))
+    return realO
 
 class EmbedThumbnail:
     url = None
@@ -284,7 +295,7 @@ class EmbedFooter:
             self.icon_url = get_from_kwargs(kwargs, "icon_url")
             self.proxy_icon_url = get_from_kwargs(kwargs, "proxy_icon_url")
 
-class EmbedAuthor:
+class EmbedField:
     name = None
     value =  None
     inline =  None
@@ -294,6 +305,46 @@ class EmbedAuthor:
             self.name = get_from_kwargs(kwargs, "name")
             self.value = get_from_kwargs(kwargs, "value")
             self.inline = get_from_kwargs(kwargs, "inline")
+
+def get_fields(fields):
+    realFields = []
+    for field in fields:
+        realFields.append(EmbedField(field))
+    return realFields
+
+class Embed:
+    title = None
+    type = None
+    description = None
+    url = None
+    timestamp = None
+    color = None
+    footer = None
+    image = None
+    thumbnail = None
+    video = None
+    provider = None
+    author = None
+    fields = None
+
+    def __init__(self, **kwargs):
+        if kwargs:
+            self.title = get_from_kwargs(kwargs, "title")
+            self.type = get_from_kwargs(kwargs, "type")
+            self.description = get_from_kwargs(kwargs, "description")
+            self.url = get_from_kwargs(kwargs, "url")
+            self.timestamp = get_from_kwargs(kwargs, "timestamp")
+            self.color = get_from_kwargs(kwargs, "color")
+            self.footer = EmbedFooter(get_from_kwargs(kwargs, "footer"))
+            self.image = EmbedImage(get_from_kwargs(kwargs, "image"))
+            self.thumbnail = EmbedThumbnail(get_from_kwargs(kwargs, "thumbnail"))
+            self.video = EmbedVideo(get_from_kwargs(kwargs, "video"))
+            self.provider = EmbedProvider(get_from_kwargs(kwargs, "provider"))
+            self.author = EmbedAuthor(get_from_kwargs(kwargs, "author"))
+            self.fields = get_fields(get_from_kwargs(kwargs, "fields"))
+
+    def __str__(self):
+        return json.dumps(self.__dict__)
 
 class Attachment:
     id = None
@@ -350,8 +401,8 @@ class Guild:
             self.verification_level = VerificationLevel(int(get_from_kwargs(kwargs, "verification_level")))
             self.default_message_notifications = get_from_kwargs(kwargs, "default_message_notifications")
             self.explicit_content_filter = FilterLevel(int(get_from_kwargs(kwargs, "explicit_content_filter")))
-            self.roles = get_from_kwargs(kwargs, "roles")
-            self.emojis = get_from_kwargs(kwargs, "emojis")
+            self.roles = get_roles(get_from_kwargs(kwargs, "roles"))
+            self.emojis = get_emojis(get_from_kwargs(kwargs, "emojis"))
             self.features = get_from_kwargs(kwargs, "features")
             self.mfa_level = get_from_kwargs(kwargs, "mfa_level")
             self.widget_enabled = get_from_kwargs(kwargs, "widget_enabled")
@@ -380,6 +431,12 @@ class User:
             self.discriminator = get_from_kwargs(kwargs, "discriminator")
             self.avatar = get_from_kwargs(kwargs, "avatar")
             self.bot = get_from_kwargs(kwargs, "bot")
+
+def get_recipients(recipients):
+    realR = []
+    for r in recipients:
+        realR.append(User(r))
+    return realR
 
 class GuildMember(User):
     nick = None
@@ -433,21 +490,6 @@ class IntegrationAccount:
         if kwargs:
             self.id = get_from_kwargs(kwargs, "id")
             self.name = get_from_kwargs(kwargs, "name")
-
-class Emoji:
-    id = None
-    name = None
-    roles = None
-    require_colons = None
-    managed = None
-
-    def __init__(self, **kwargs):
-        if kwargs:
-            self.id = get_from_kwargs(kwargs, "id")
-            self.name = get_from_kwargs(kwargs, "name")
-            self.roles = get_from_kwargs(kwargs, "roles")
-            self.require_colons = get_from_kwargs(kwargs, "require_colons")
-            self.managed = get_from_kwargs(kwargs, "managed")
 
 class Ban:
     reason = None
