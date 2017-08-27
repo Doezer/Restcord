@@ -259,7 +259,7 @@ class Restcord:
 	async def delete_guild_integration(self, guild_id, integration_id):
 		await self.http.delete("/guilds/{}/integrations/{}".format(guild_id, integration_id))
 
-	async def sync_guild_integration(self, guild_id, integration_id)
+	async def sync_guild_integration(self, guild_id, integration_id):
 		await self.http.post("/guilds/{}/integrations/{}/sync".format(guild_id, integration_id))
 
 	async def get_guild_embed(self, guild_id):
