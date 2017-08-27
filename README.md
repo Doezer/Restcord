@@ -2,7 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/restcord.svg)](https://pypi.python.org/pypi/restcord/)
 [![PyPI](https://img.shields.io/pypi/pyversions/restcord.svg)](https://pypi.python.org/pypi/restcord/)
-[![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/mV5j7su)
+[![Discord](https://img.shields.io/discord/351376159302483968.svg)](https://discord.gg/mV5j7su)
 Restcord is a rest API wrapper for the Discord API, but this one does not include WebSockets, this is for people who dont want websockets but only make requests to the api.
 
 ### Breaking Changes
