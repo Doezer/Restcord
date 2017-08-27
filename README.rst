@@ -3,7 +3,7 @@ Restcord
 
 |PyPI| |PyPI2|
 
-Restcord is a rest API wrapper for the Discord API, but this one doesn’t
+Restcord is a rest API wrapper for the Discord API, but this one does not
 include WebSockets, this is for people who dont want websockets but only
 make requests to the api.
 

@@ -1,6 +1,6 @@
 **Note: for support questions, please use Discord**. This repository's issues are reserved for feature requests and bug reports.
 
-* **I'm submitting a ... **
+* **I'm submitting a**
   - [ ] bug report
   - [ ] feature request
 
