@@ -25,6 +25,7 @@ setup(name='Restcord',
       license='MIT',
       description='A python wrapper for the Discord API',
       long_description=readme,
+      website="https://github.com/JustMaffie/Restcord",
       include_package_data=True,
       install_requires=requirements,
       classifiers=[
