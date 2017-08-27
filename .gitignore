@@ -10,3 +10,5 @@
 *.flac
 dist/*
 Restcord.egg-info/*
+test.py
+build/*

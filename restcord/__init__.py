@@ -10,7 +10,9 @@ A basic wrapper for the Discord API.
 :license: MIT, see LICENSE for more details.
 
 """
-
+from .core import *
+from .models import *
+from .http import *
 __title__ = 'Restcord'
 __author__ = 'JustMaffie'
 __license__ = 'MIT'
