@@ -1,6 +1,6 @@
 import aiohttp
-from restcord import __version__ as version
-from restcord import __github__ as github
+from .vars import __version__ as version
+from .vars import __github__ as github
 
 BASE_URL = "https://discordapp.com/api/v6"
 

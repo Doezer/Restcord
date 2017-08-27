@@ -1,6 +1,6 @@
 from setuptools import setup
 import re, os, sys
-from restcord import __version__
+from restcord.vars import __version__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -25,7 +25,7 @@ setup(name='Restcord',
       license='MIT',
       description='Restcord is a rest API wrapper for the Discord API, but this one doesn\'t include WebSockets, this is for people who dont want websockets but only make requests to the api.',
       long_description=readme,
-      website="https://github.com/JustMaffie/Restcord",
+      url="https://github.com/JustMaffie/Restcord",
       include_package_data=True,
       install_requires=requirements,
       classifiers=[
