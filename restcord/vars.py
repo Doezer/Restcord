@@ -5,5 +5,5 @@ __copyright__ = 'Copyright 2015-2017 JustMaffie'
 __github__ = "https://github.com/JustMaffie/Restcord"
 __major__ = "1"
 __minor__ = "0"
-__patch__ = "2"
+__patch__ = "3"
 __version__ = "{}.{}.{}".format(__major__, __minor__, __patch__)

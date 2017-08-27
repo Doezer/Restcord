@@ -1,6 +1,3 @@
-SoonTM
-
-
 # Restcord
 
 [![PyPI](https://img.shields.io/pypi/v/restcord.svg)](https://pypi.python.org/pypi/restcord/)

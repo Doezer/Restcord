@@ -1,9 +1,7 @@
-SoonTM
-
 Restcord
 ========
 
-|PyPI| |PyPI|
+|PyPI| |PyPI2|
 
 Restcord is a rest API wrapper for the Discord API, but this one doesn’t
 include WebSockets, this is for people who dont want websockets but only
@@ -54,5 +52,5 @@ Related Projects
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/restcord.svg
    :target: https://pypi.python.org/pypi/restcord/
-.. |PyPI| image:: https://img.shields.io/pypi/pyversions/restcord.svg
+.. |PyPI2| image:: https://img.shields.io/pypi/pyversions/restcord.svg
    :target: https://pypi.python.org/pypi/restcord/
