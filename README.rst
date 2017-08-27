@@ -81,5 +81,5 @@ Related Projects
    :target: https://pypi.python.org/pypi/restcord/
 .. |PyPI2| image:: https://img.shields.io/pypi/pyversions/restcord.svg
    :target: https://pypi.python.org/pypi/restcord/
-.. |Discord| image:: https://img.shields.io/discord/351376159302483968.svg
+.. |Discord| image:: https://img.shields.io/discord/351376159302483968.svg?label=Discord
    :target: https://discord.gg/mV5j7su
