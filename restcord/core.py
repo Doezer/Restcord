@@ -1,6 +1,6 @@
 import logging
 
-import exceptions
+from .exceptions import *
 from .http import HTTPClient
 from .models import *
 
@@ -292,9 +292,9 @@ class Restcord:
         resp = await self.http.post("/guilds/{}/emojis".format(guild_id), data)
 
         if 'Missing Permissions' in str(resp):
-            raise exceptions.GuildPermissionsError('The current account does not have the MANAGE EMOJI permission.')
+            raise GuildPermissionsError('The current account does not have the MANAGE EMOJI permission.')
         elif 'Maximum number of emojis reached (50)' in str(resp):
-            raise exceptions.GuildEmojisFull('The current guild emote storage is full.')
+            raise GuildEmojisFull('The current guild emote storage is full.')
         return Emoji(**resp)
 
     async def get_invite(self, code):
