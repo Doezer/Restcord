@@ -1,44 +1,45 @@
 from setuptools import setup
-import re, os, sys
-from restcord.vars import __version__
+import os, sys
+from restcord.vars import __version__, __title__, __author__, __license__, __copyright__, __credits__,\
+    __github__, __maintainer__, __status__, __description__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
 
-requirements = []
 with open('requirements.txt') as f:
-  requirements = f.read().splitlines()
+    requirements = f.read().splitlines()
 
 version = __version__
 if not version:
     raise RuntimeError('version is not set')
 
-readme = ''
 with open('README.rst') as f:
     readme = f.read()
 
-setup(name='Restcord',
-      author='JustMaffie',
+setup(name=__title__,
+      author=__author__,
       version=version,
       packages=['restcord'],
-      license='MIT',
-      description='Restcord is a rest API wrapper for the Discord API, but this one does not include WebSockets, this is for people who dont want websockets but only make requests to the api.',
+      license=__license__,
+      description=__description__,
       long_description=readme,
-      url="https://github.com/JustMaffie/Restcord",
+      url=__github__,
       include_package_data=True,
       install_requires=requirements,
       classifiers=[
-        'Development Status :: 4 - Beta',
-        'License :: OSI Approved :: MIT License',
-        'Intended Audience :: Developers',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Topic :: Internet',
-        'Topic :: Software Development :: Libraries',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Utilities',
+          'Development Status :: 4 - Beta',
+          'License :: OSI Approved :: MIT License',
+          'Intended Audience :: Developers',
+          'Natural Language :: English',
+          'Operating System :: OS Independent',
+          'Programming Language :: Python :: 3.4',
+          'Programming Language :: Python :: 3.5',
+          'Programming Language :: Python :: 3.6',
+          'Programming Language :: Python :: 3.7',
+          'Topic :: Internet',
+          'Topic :: Software Development :: Libraries',
+          'Topic :: Software Development :: Libraries :: Python Modules',
+          'Topic :: Utilities',
       ]
-)
+      )

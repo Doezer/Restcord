@@ -10,3 +10,5 @@ __version__ = "{}.{}.{}".format(__major__, __minor__, __patch__)
 __credits__ = ["JustMaffie", "Doezer"]
 __maintainer__ = "Doezer"
 __status__ = "Development"
+__description__ = 'Restcord is a Python wrapper for the Discord API, but without using WebSockets. ' \
+                  'This is for people who only want to make requests to the api without having a full-fledged bot.'

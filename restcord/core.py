@@ -1,8 +1,11 @@
 import logging
 
+import exceptions
 from .http import HTTPClient
 from .models import *
 
+
+# TODO : separate these requests in logical classes.
 
 def get_from_kwargs(kwargs, key):
     if not kwargs:
@@ -289,9 +292,9 @@ class Restcord:
         resp = await self.http.post("/guilds/{}/emojis".format(guild_id), data)
 
         if 'Missing Permissions' in str(resp):
-            return 1
+            raise exceptions.GuildPermissionsError('The current account does not have the MANAGE EMOJI permission.')
         elif 'Maximum number of emojis reached (50)' in str(resp):
-            return 2
+            raise exceptions.GuildEmojisFull('The current guild emote storage is full.')
         return Emoji(**resp)
 
     async def get_invite(self, code):
@@ -301,3 +304,7 @@ class Restcord:
     async def delete_invite(self, code):
         resp = await self.http.delete("/invites/{}".format(code))
         return Invite(**resp)
+
+    def close(self):
+        self.http.close()
+        pass
