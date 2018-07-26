@@ -128,4 +128,4 @@ if __name__ == '__main__':
     bot_token = 'your_token_here'
     emote_name = 'emote_name_here'
     emote_local_path = 'local_path_to_image_here'
-    bot.run('koh_lantaa', './res/koh_lanta.jpeg')
+    bot.run(bot_token, emote_name, emote_local_path)
