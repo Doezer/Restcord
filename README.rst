@@ -1,31 +1,26 @@
 Restcord
 ========
 
-|PyPI| |PyPI2| |Discord|
+Restcord is a Python wrapper for the Discord API, but without using WebSockets.
+This is for people who only want to make requests to the api without having a full-fledged bot.
 
-Restcord is a rest API wrapper for the Discord API, but this one does not
-include WebSockets, this is for people who dont want websockets but only
-make requests to the api.
+It was originally developed by JustMaffie.
 
 Breaking Changes
 ~~~~~~~~~~~~~~~~
 
-The discord API is constantly changing and the wrapper API is as well.
+The Discord API is subject to breaking changes, so this wrapper is also subject to these changes.
 
 Installing
 ----------
 
-To install the library, you can just run the following command:
+To install this library, you should either clone it or download it.
+The version on PyPi is the original one, without any of the fixes here.
 
-::
+Please note that on Linux installing voice you must install the following packages via your
+favourite package manager (e.g. ``apt``, ``yum``, etc) before running the above command:
 
-    pip install -U restcord
-
-Please note that on Linux installing voice you must install the
-following packages via your favourite package manager (e.g. ``apt``,
-``yum``, etc) before running the above command:
-
--  python-dev (e.g. ``python3.5-dev`` for Python 3.5)
+- python<version>-dev (e.g. ``python3.5-dev`` for Python 3.5)
 
 Quick Example
 -------------
@@ -35,31 +30,24 @@ Quick Example
     import restcord
     import asyncio
 
-    loop = asyncio.get_event_loop()
-    client = restcord.Restcord(token="Your token here")
+    loop = asyncio.get_event_loop() # Get current asyncio loop
+    client = restcord.Restcord(token="Your token here") # Start the REST API session
 
-    async def test():
+    async def get_guild():
         guild = await client.get_guild("Some guild id of a guild that ur bot/user account is in")
         print(guild.__dict__)
 
     loop.run_until_complete(test())
+    client.close()
+
+Check the file example.py for an application used to upload an emote to the first guild with permissions OK & storage OK.
 
 For user accounts:
 ~~~~~~~~~~~~~~~~~~
 
 .. code:: py
 
-    import restcord
-    import asyncio
-
-    loop = asyncio.get_event_loop()
     client = restcord.Restcord(token="Your token here", selfbot=True)
-
-    async def test():
-        guild = await client.get_guild("Some guild id of a guild that ur bot/user account is in")
-        print(guild.__dict__)
-
-    loop.run_until_complete(test())
 
 Requirements
 ------------
@@ -73,13 +61,8 @@ Usually ``pip`` will handle these for you.
 Related Projects
 ----------------
 
+-  `Restcord`_
 -  `discord.py`_
 
 .. _discord.py: https://github.com/rapptz/discord.py
-
-.. |PyPI| image:: https://img.shields.io/pypi/v/restcord.svg
-   :target: https://pypi.python.org/pypi/restcord/
-.. |PyPI2| image:: https://img.shields.io/pypi/pyversions/restcord.svg
-   :target: https://pypi.python.org/pypi/restcord/
-.. |Discord| image:: https://img.shields.io/discord/351376159302483968.svg?label=Discord
-   :target: https://discord.gg/mV5j7su
+.. _Restcord:: https://github.com/JustMaffie/Restcord

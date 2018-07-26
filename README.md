@@ -1,11 +1,12 @@
 # Restcord
 
-[![PyPI](https://img.shields.io/pypi/v/restcord.svg)](https://pypi.python.org/pypi/restcord/)
-[![PyPI](https://img.shields.io/pypi/pyversions/restcord.svg)](https://pypi.python.org/pypi/restcord/)
-[![Discord](https://img.shields.io/discord/351376159302483968.svg?label=Discord)](https://discord.overtown.fr)
+<!--[![PyPI](https://img.shields.io/pypi/v/restcord.svg)](https://pypi.python.org/pypi/restcord/)
+[![PyPI](https://img.shields.io/pypi/pyversions/restcord.svg)](https://pypi.python.org/pypi/restcord/)-->
 
 Restcord is a Python wrapper for the Discord API, but without using WebSockets. 
 This is for people who only want to make requests to the api without having a full-fledged bot.
+
+It was originally developed by JustMaffie.
 
 ### Breaking Changes
 
