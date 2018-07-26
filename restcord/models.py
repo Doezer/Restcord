@@ -3,6 +3,7 @@ import json
 
 CDN_URL = "https://cdn.discordapp.com/"
 
+
 class ChannelType(Enum):
     text = 0
     private = 1
@@ -12,11 +13,13 @@ class ChannelType(Enum):
     def __str__(self):
         return self.name
 
+
 class FilterLevel(Enum):
     disabled = 0
     members_without_roles = 1
     all_members = 2
     no = None
+
 
 class MessageType(Enum):
     default = 0
@@ -28,6 +31,7 @@ class MessageType(Enum):
     pins_add = 6
     guild_member_join = 7
     no = None
+
 
 class ServerRegion(Enum):
     # I should update this.....
@@ -51,6 +55,7 @@ class ServerRegion(Enum):
     def __str__(self):
         return self.value
 
+
 class VerificationLevel(Enum):
     none = 0
     low = 1
@@ -63,12 +68,14 @@ class VerificationLevel(Enum):
     def __str__(self):
         return self.name
 
+
 def get_from_kwargs(kwargs, key):
     if not kwargs:
         return None
     if key not in kwargs:
         return None
     return kwargs[key]
+
 
 class Emoji:
     id = None
@@ -85,6 +92,7 @@ class Emoji:
             self.require_colons = get_from_kwargs(kwargs, "require_colons")
             self.managed = get_from_kwargs(kwargs, "managed")
 
+
 def get_emojis(emojis):
     if not emojis:
         return []
@@ -92,6 +100,7 @@ def get_emojis(emojis):
     for e in emojis:
         realE.append(Emoji(**e))
     return realE
+
 
 class Channel:
     id = None
@@ -126,6 +135,7 @@ class Channel:
             self.icon = get_from_kwargs(kwargs, "icon")
             self.owner_id = get_from_kwargs(kwargs, "owner_id")
 
+
 def get_channels(chans):
     if not chans:
         return []
@@ -133,6 +143,7 @@ def get_channels(chans):
     for c in chans:
         realC.append(Channel(**c))
     return realC
+
 
 class Message:
     id = None
@@ -175,6 +186,7 @@ class Message:
             if type:
                 self.type = MessageType(int(type))
 
+
 class Reaction:
     count = None
     me = None
@@ -185,6 +197,7 @@ class Reaction:
             self.id = get_from_kwargs(kwargs, "id")
             self.me = get_from_kwargs(kwargs, "me")
             self.emoji = get_from_kwargs(kwargs, "emoji")
+
 
 class Overwrite:
     id = None
@@ -198,6 +211,7 @@ class Overwrite:
             self.type = get_from_kwargs(kwargs, "type")
             self.allow = get_from_kwargs(kwargs, "allow")
             self.deny = get_from_kwargs(kwargs, "deny")
+
 
 class Role:
     id = None
@@ -220,6 +234,7 @@ class Role:
             self.managed = get_from_kwargs(kwargs, "managed")
             self.mentionable = get_from_kwargs(kwargs, "mentionable")
 
+
 def get_roles(roles):
     if not roles:
         return []
@@ -227,6 +242,7 @@ def get_roles(roles):
     for r in roles:
         realR.append(Role(**r))
     return realR
+
 
 def get_overwrites(overwrites):
     if not overwrites:
@@ -236,9 +252,10 @@ def get_overwrites(overwrites):
         realO.append(Overwrite(**o))
     return realO
 
+
 class EmbedThumbnail:
     url = None
-    proxy_url =  None
+    proxy_url = None
     height = None
     width = None
 
@@ -248,6 +265,7 @@ class EmbedThumbnail:
             self.proxy_url = get_from_kwargs(kwargs, "proxy_url")
             self.height = get_from_kwargs(kwargs, "height")
             self.width = get_from_kwargs(kwargs, "width")
+
 
 class EmbedVideo:
     url = None
@@ -260,9 +278,10 @@ class EmbedVideo:
             self.height = get_from_kwargs(kwargs, "height")
             self.width = get_from_kwargs(kwargs, "width")
 
+
 class EmbedImage:
     url = None
-    proxy_url =  None
+    proxy_url = None
     height = None
     width = None
 
@@ -273,9 +292,10 @@ class EmbedImage:
             self.height = get_from_kwargs(kwargs, "height")
             self.width = get_from_kwargs(kwargs, "width")
 
+
 class EmbedProvider:
     name = None
-    url =  None
+    url = None
 
     def __init__(self, **kwargs):
         if kwargs:
@@ -285,9 +305,9 @@ class EmbedProvider:
 
 class EmbedAuthor:
     name = None
-    url =  None
-    icon_url =  None
-    proxy_icon_url =  None
+    url = None
+    icon_url = None
+    proxy_icon_url = None
 
     def __init__(self, **kwargs):
         if kwargs:
@@ -296,10 +316,11 @@ class EmbedAuthor:
             self.icon_url = get_from_kwargs(kwargs, "icon_url")
             self.proxy_icon_url = get_from_kwargs(kwargs, "proxy_icon_url")
 
+
 class EmbedFooter:
     text = None
-    icon_url =  None
-    proxy_icon_url =  None
+    icon_url = None
+    proxy_icon_url = None
 
     def __init__(self, **kwargs):
         if kwargs:
@@ -307,16 +328,18 @@ class EmbedFooter:
             self.icon_url = get_from_kwargs(kwargs, "icon_url")
             self.proxy_icon_url = get_from_kwargs(kwargs, "proxy_icon_url")
 
+
 class EmbedField:
     name = None
-    value =  None
-    inline =  None
+    value = None
+    inline = None
 
     def __init__(self, **kwargs):
         if kwargs:
             self.name = get_from_kwargs(kwargs, "name")
             self.value = get_from_kwargs(kwargs, "value")
             self.inline = get_from_kwargs(kwargs, "inline")
+
 
 def get_fields(fields):
     if not fields:
@@ -325,6 +348,7 @@ def get_fields(fields):
     for field in fields:
         realFields.append(EmbedField(**field))
     return realFields
+
 
 class Embed:
     title = None
@@ -360,14 +384,15 @@ class Embed:
     def __str__(self):
         return json.dumps(self.__dict__)
 
+
 class Attachment:
     id = None
-    filename =  None
-    size =  None
-    url =  None
-    proxy_url =  None
-    height =  None
-    width =  None
+    filename = None
+    size = None
+    url = None
+    proxy_url = None
+    height = None
+    width = None
 
     def __init__(self, **kwargs):
         if kwargs:
@@ -379,26 +404,27 @@ class Attachment:
             self.height = get_from_kwargs(kwargs, "height")
             self.width = get_from_kwargs(kwargs, "width")
 
+
 class Guild:
     id = None
     name = None
-    icon =  None
-    splash =  None
-    owner_id =  None
-    region =  None
-    afk_channel_id =  None
-    afk_timeout =  None
-    embed_enabled =  None
-    embed_channel_id =  None
-    verification_level =  None
-    default_message_notifications =  None
-    explicit_content_filter =  None
-    roles =  None
-    emojis =  None
-    features =  None
-    mfa_level =  None
-    widget_enabled =  None
-    widget_channel_id =  None
+    icon = None
+    splash = None
+    owner_id = None
+    region = None
+    afk_channel_id = None
+    afk_timeout = None
+    embed_enabled = None
+    embed_channel_id = None
+    verification_level = None
+    default_message_notifications = None
+    explicit_content_filter = None
+    roles = None
+    emojis = None
+    features = None
+    mfa_level = None
+    widget_enabled = None
+    widget_channel_id = None
 
     def __init__(self, **kwargs):
         if kwargs:
@@ -425,6 +451,7 @@ class Guild:
             self.widget_enabled = get_from_kwargs(kwargs, "widget_enabled")
             self.widget_channel_id = get_from_kwargs(kwargs, "widget_channel_id")
 
+
 class GuildEmbed:
     enabled = None
     channel_id = None
@@ -433,6 +460,7 @@ class GuildEmbed:
         if kwargs:
             self.enabled = get_from_kwargs(kwargs, "enabled")
             self.channel_id = get_from_kwargs(kwargs, "channel_id")
+
 
 class User:
     id = None
@@ -449,6 +477,7 @@ class User:
             self.avatar = get_from_kwargs(kwargs, "avatar")
             self.bot = get_from_kwargs(kwargs, "bot")
 
+
 def get_recipients(recipients):
     if not recipients:
         return []
@@ -456,6 +485,7 @@ def get_recipients(recipients):
     for r in recipients:
         realR.append(User(**r))
     return realR
+
 
 class GuildMember(User):
     nick = None
@@ -472,6 +502,7 @@ class GuildMember(User):
             self.joined_at = get_from_kwargs(kwargs, "joined_at")
             self.deaf = get_from_kwargs(kwargs, "deaf")
             self.mute = get_from_kwargs(kwargs, "mute")
+
 
 class Integration:
     id = None
@@ -501,6 +532,7 @@ class Integration:
             self.account = IntegrationAccount(**get_from_kwargs(kwargs, "account"))
             self.synced_at = get_from_kwargs(kwargs, "synced_at")
 
+
 class IntegrationAccount:
     id = None
     name = None
@@ -510,6 +542,7 @@ class IntegrationAccount:
             self.id = get_from_kwargs(kwargs, "id")
             self.name = get_from_kwargs(kwargs, "name")
 
+
 class Ban:
     reason = None
     user = None
@@ -518,6 +551,7 @@ class Ban:
         if kwargs:
             self.reason = get_from_kwargs(kwargs, "reason")
             self.user = User(**get_from_kwargs(kwargs, "user"))
+
 
 class Invite:
     code = None
