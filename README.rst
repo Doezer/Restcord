@@ -34,7 +34,7 @@ Quick Example
     client = restcord.Restcord(token="Your token here") # Start the REST API session
 
     async def get_guild():
-        guild = await client.get_guild("Some guild id of a guild that ur bot/user account is in")
+        guild = await client.GuildCord.get_guild("Some guild id of a guild that ur bot/user account is in")
         print(guild.__dict__)
 
     loop.run_until_complete(test())
