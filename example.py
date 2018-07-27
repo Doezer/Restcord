@@ -19,7 +19,7 @@ __description__ = "Simple app to use the Restcord API wrapper. Adds an emote to 
 
 class EmojiPutter(object):
 
-    def __init__(self, proxy_url=None, proxy_auth=None):
+    def __init__(self, bot_token):
         """
 
         :param str proxy_url: (optional) URL of the HTTP proxy to use
@@ -27,13 +27,10 @@ class EmojiPutter(object):
         """
         asyncio.set_event_loop(asyncio.new_event_loop())
         self.loop = asyncio.get_event_loop()
-        self.client = restcord.Restcord(token='NDU5NzIxOTcwMjM4NDg4NTc4.Dg6WwA.7ZAM1P3D9e966PKAKQljeUsvVQc',
-                                        proxy_url=proxy_url,
-                                        proxy_auth=proxy_auth)
-
-        self.token = None
+        self.token = bot_token
         self.emote_name = None
         self.image_path = None
+        self.client = Restcord(token=self.token, loop=self.loop)
 
     async def add_emote(self):
         """ Add an emote recursively to the guilds the account has access to.
