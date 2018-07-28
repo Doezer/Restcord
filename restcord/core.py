@@ -1,3 +1,4 @@
+import asyncio
 import logging
 
 from .user import UserCord
@@ -31,12 +32,12 @@ class Restcord:
             self.token = token
         selfbot = get_from_kwargs(kwargs, "selfbot")
         if not selfbot:
-            selfbot = False
+            self.selfbot = False
         else:
             self.selfbot = selfbot
         loop = get_from_kwargs(kwargs, "loop")
         if not loop:
-            loop = False
+            self.loop = asyncio.get_event_loop()
         else:
             self.loop = loop
         proxy_url = get_from_kwargs(kwargs, "proxy_url")

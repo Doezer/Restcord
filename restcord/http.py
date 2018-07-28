@@ -1,3 +1,4 @@
+import asyncio
 import logging
 
 import aiohttp
@@ -12,7 +13,10 @@ class HTTPClient:
     def __init__(self, restcord, proxy_url=None, proxy_auth=None, loop=None):
         self.proxy_url = proxy_url
         self.proxy_auth = proxy_auth
-        self.loop = loop
+        if loop:
+            self.loop = loop
+        else:
+            self.loop = asyncio.get_event_loop()
         self.session = aiohttp.ClientSession(loop=self.loop)
         self.client = restcord
 
