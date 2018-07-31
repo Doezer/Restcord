@@ -7,7 +7,8 @@ import logging
 
 import aiohttp
 
-import restcord
+from .restcord.core import Restcord
+from .restcord import exceptions
 
 logger = logging.getLogger(__name__)
 
@@ -47,9 +48,9 @@ class EmojiPutter(object):
         error = False
         emojis = []
 
-        guilds = await self.client.get_guilds_me()  # Get list of guilds
+        guilds = await self.client.UserCord.get_guilds_me()  # Get list of guilds
         for guild in guilds:  # Adding account Emojis to a list
-            emojis += await self.client.get_guild_emojis(guild.id)
+            emojis += await self.client.EmojiCord.get_guild_emojis(guild.id)
 
         if name in [emoji.name for emoji in emojis]:  # Check presence of emoji in list
             logger.info(f'The bot already has this emote in its list. Terminating.')
@@ -76,12 +77,12 @@ class EmojiPutter(object):
         for guild in guilds:
             data = json.dumps({"name": name, "image": img_uri})  # Create the JSON data
             try:
-                await self.client.create_guild_emoji(guild_id=guild.id, data=data)
-            except restcord.exceptions.GuildPermissionsError:
+                await self.client.EmojiCord.create_guild_emoji(guild_id=guild.id, data=data)
+            except exceptions.GuildPermissionsError:
                 logger.error(f'I do not have permission to upload emotes on {guild.name}. Trying next...')
                 error = True
                 continue
-            except restcord.exceptions.GuildEmojisFull:
+            except exceptions.GuildEmojisFull:
                 logger.error(f'Too much emojis on {guild.name}. Trying next...')
                 error = True
                 continue

@@ -1,7 +1,9 @@
+import os
+import sys
+
 from setuptools import setup
-import os, sys
-from restcord.vars import __version__, __title__, __author__, __license__, __copyright__, __credits__,\
-    __github__, __maintainer__, __status__, __description__
+
+from .restcord.vars import __version__, __title__, __author__, __license__, __github__, __description__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')

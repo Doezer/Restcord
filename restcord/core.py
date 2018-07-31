@@ -11,8 +11,8 @@ from .exceptions import *
 from .http import HTTPClient
 from .models import *
 
+logger = logging.getLogger()
 
-# TODO : separate these requests in logical classes.
 
 def get_from_kwargs(kwargs, key):
     if not kwargs:
