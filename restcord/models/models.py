@@ -11,7 +11,6 @@ def get_from_kwargs(kwargs, key):
         return None
     if key not in kwargs:
         return None
-    logger.debug(kwargs[key])
     return kwargs[key]
 
 
