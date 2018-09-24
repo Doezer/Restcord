@@ -194,3 +194,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 .idea/
+local_vars.py.example

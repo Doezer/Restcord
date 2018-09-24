@@ -1,12 +1,8 @@
-**Note: for support questions, please use Discord**. This repository's issues are reserved for feature requests and bug reports.
+This repository's issues are reserved for feature requests and bug reports.
 
 * **I'm submitting a**
   - [ ] bug report
   - [ ] feature request
-
-
-* **Do you want to request a *feature* or report a *bug*?**
-
 
 
 * **What is the current behavior?**

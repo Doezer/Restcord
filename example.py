@@ -1,14 +1,11 @@
+import asyncio
 import json
+import logging
 import sys
 from base64 import b64encode
 
-import asyncio
-import logging
-
-import aiohttp
-
-from .restcord.core import Restcord
 from .restcord import exceptions
+from .restcord.core import Restcord
 
 logger = logging.getLogger(__name__)
 
@@ -21,11 +18,6 @@ __description__ = "Simple app to use the Restcord API wrapper. Adds an emote to 
 class EmojiPutter(object):
 
     def __init__(self, bot_token):
-        """
-
-        :param str proxy_url: (optional) URL of the HTTP proxy to use
-        :param aiohttp.BasicAuth proxy_auth: (optional) for authentication with the Proxy
-        """
         asyncio.set_event_loop(asyncio.new_event_loop())
         self.loop = asyncio.get_event_loop()
         self.token = bot_token
@@ -99,8 +91,7 @@ class EmojiPutter(object):
             logger.warning(
                 f'Could not upload {image_path} as emoji {name} to any server. Check that servers are not full.')
 
-    def run(self, token, name, image_path):
-        self.token = token
+    def run(self, name, image_path):
         self.emote_name = name
         self.image_path = image_path
         try:
@@ -118,12 +109,9 @@ if __name__ == '__main__':
         format="%(asctime)s,%(msecs)03d %(levelname)-5.5s [%(name)s] %(message)s <%(lineno)d>",
     )
 
-    proxyurl = 'http://localhost:8000'
-    proxy_login = 'login'
-    proxy_password = 'password'
-    proxyauth = aiohttp.BasicAuth(proxy_login, proxy_password)
-    bot = EmojiPutter(proxyurl, proxyauth)
     bot_token = 'your_token_here'
+    bot = EmojiPutter(bot_token)
+
     emote_name = 'emote_name_here'
     emote_local_path = 'local_path_to_image_here'
-    bot.run(bot_token, emote_name, emote_local_path)
+    bot.run(emote_name, emote_local_path)

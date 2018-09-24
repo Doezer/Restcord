@@ -4,7 +4,7 @@ Restcord
 Restcord is a Python wrapper for the Discord API, but without using WebSockets.
 This is for people who only want to make requests to the api without having a full-fledged bot.
 
-It was originally developed by JustMaffie.
+It was originally developed by JustMaffie, I (Doezer) modified it to make it work with last version of API.
 
 Breaking Changes
 ~~~~~~~~~~~~~~~~
