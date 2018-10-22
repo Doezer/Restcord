@@ -1,11 +1,12 @@
 import asyncio
 import json
 import logging
+import os
 import sys
 from base64 import b64encode
 
-from .restcord import exceptions
-from .restcord.core import Restcord
+from restcord import exceptions
+from restcord.core import Restcord
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +31,7 @@ class EmojiPutter(object):
 
         Checks if the emote is already present in the account's emotes using self.emote_name.
         If not, loads self.image_path as base64 URI.
-        Then, browser throuh guilds to check either if the account has permission and the guild has room for emotes.
+        Then, browses throuh guilds to check either if the account has permission and the guild has room for emotes.
         Finally, uploads the emote if those conditions are OK, and exits the function.
         """
         name = self.emote_name
@@ -54,20 +55,16 @@ class EmojiPutter(object):
             logger.exception('Issue while trying to read the given image.')
             return
 
-        try:
-            img_ext = image_path.split('/')[-1]  # Remove slashes from the path
-        except:
-            img_ext = image_path.split('\\')[-1]  # If on Windows, remove antislashes
-
+        img_ext = image_path.split(os.sep)[-1]  # Remove separators from the path
         img_ext = img_ext.split('.')[-1]  # Retrieve the file extension (only PNG/JPG authorized)
 
         if img_ext.upper() not in ['PNG', 'JPG', 'JPEG']:
             raise Exception('Image needs to be JPG or PNG.')
 
         img_uri = 'data:image/{};base64,{}'.format(img_ext, encoded)  # Create the URI string
+        data = json.dumps({"name": name, "image": img_uri})  # Create the JSON data
 
         for guild in guilds:
-            data = json.dumps({"name": name, "image": img_uri})  # Create the JSON data
             try:
                 await self.client.EmojiCord.create_guild_emoji(guild_id=guild.id, data=data)
             except exceptions.GuildPermissionsError:

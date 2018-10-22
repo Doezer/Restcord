@@ -8,7 +8,7 @@ from .guild import GuildCord
 from .invite import InviteCord
 from .audit import AuditCord
 from .exceptions import *
-from .http import HTTPClient
+from .http_client import HTTPClient
 from .models import *
 
 logger = logging.getLogger()

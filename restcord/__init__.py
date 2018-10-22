@@ -12,5 +12,5 @@ A basic wrapper for the Discord API.
 """
 from .core import *
 from .models import *
-from .http import *
+from .http_client import *
 from .vars import *
