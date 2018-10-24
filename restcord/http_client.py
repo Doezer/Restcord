@@ -10,9 +10,7 @@ logger = logging.getLogger()
 
 
 class HTTPClient:
-    def __init__(self, restcord, proxy_url=None, proxy_auth=None, loop=None):
-        self.proxy_url = proxy_url
-        self.proxy_auth = proxy_auth
+    def __init__(self, restcord, loop=None):
         if loop:
             self.loop = loop
         else:

@@ -8,7 +8,7 @@ from .guild import GuildCord
 from .invite import InviteCord
 from .audit import AuditCord
 from .exceptions import *
-from .http import HTTPClient
+from .http_client import HTTPClient
 from .models import *
 
 logger = logging.getLogger()
@@ -40,12 +40,7 @@ class Restcord:
             self.loop = asyncio.get_event_loop()
         else:
             self.loop = loop
-        proxy_url = get_from_kwargs(kwargs, "proxy_url")
-        proxy_auth = get_from_kwargs(kwargs, "proxy_auth")
-        if proxy_url:
-            self.http = HTTPClient(self, proxy_url, proxy_auth, loop=self.loop)
-        else:
-            self.http = HTTPClient(self, loop=self.loop)
+        self.http = HTTPClient(self, loop=self.loop)
         self.UserCord = UserCord(self)
         self.ChannelCord = ChannelCord(self)
         self.EmojiCord = EmojiCord(self)
