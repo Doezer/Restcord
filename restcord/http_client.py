@@ -33,57 +33,29 @@ class HTTPClient:
         await self.session.close()
 
     async def get(self, endpoint):
-        if self.proxy_url:
-            resp = await self.session.get(BASE_URL + endpoint, headers=self.get_headers(),
-                                          proxy=self.proxy_url, proxy_auth=self.proxy_auth)
-        else:
-            resp = await self.session.get(BASE_URL + endpoint, headers=self.get_headers())
+        resp = await self.session.get(BASE_URL + endpoint, headers=self.get_headers())
         return await resp.json()
 
     async def post(self, endpoint, data=None):
-        if self.proxy_url:
-            resp = await self.session.post(BASE_URL + endpoint, headers=self.get_headers(True), data=data,
-                                           proxy=self.proxy_url, proxy_auth=self.proxy_auth)
-        else:
-            resp = await self.session.post(BASE_URL + endpoint, headers=self.get_headers(True), data=data)
+        resp = await self.session.post(BASE_URL + endpoint, headers=self.get_headers(True), data=data)
         return await resp.json()
 
     async def put(self, endpoint, data=None):
-        if self.proxy_url:
-            resp = await self.session.put(BASE_URL + endpoint, headers=self.get_headers(), data=data,
-                                          proxy=self.proxy_url, proxy_auth=self.proxy_auth)
-        else:
-            resp = await self.session.put(BASE_URL + endpoint, headers=self.get_headers(), data=data)
+        resp = await self.session.put(BASE_URL + endpoint, headers=self.get_headers(), data=data)
         return await resp.json()
 
     async def delete(self, endpoint):
-        if self.proxy_url:
-            resp = await self.session.delete(BASE_URL + endpoint, headers=self.get_headers(),
-                                             proxy=self.proxy_url, proxy_auth=self.proxy_auth)
-        else:
-            resp = await self.session.delete(BASE_URL + endpoint, headers=self.get_headers())
+        resp = await self.session.delete(BASE_URL + endpoint, headers=self.get_headers())
         return await resp.json()
 
     async def head(self, endpoint):
-        if self.proxy_url:
-            resp = await self.session.head(BASE_URL + endpoint, headers=self.get_headers(),
-                                           proxy=self.proxy_url, proxy_auth=self.proxy_auth)
-        else:
-            resp = await self.session.head(BASE_URL + endpoint, headers=self.get_headers())
+        resp = await self.session.head(BASE_URL + endpoint, headers=self.get_headers())
         return await resp.json()
 
     async def options(self, endpoint):
-        if self.proxy_url:
-            resp = await self.session.options(BASE_URL + endpoint, headers=self.get_headers(),
-                                              proxy=self.proxy_url, proxy_auth=self.proxy_auth)
-        else:
-            resp = await self.session.options(BASE_URL + endpoint, headers=self.get_headers())
+        resp = await self.session.options(BASE_URL + endpoint, headers=self.get_headers())
         return await resp.json()
 
     async def patch(self, endpoint, data=None):
-        if self.proxy_url:
-            resp = await self.session.patch(BASE_URL + endpoint, headers=self.get_headers(), data=data,
-                                            proxy=self.proxy_url, proxy_auth=self.proxy_auth)
-        else:
-            resp = await self.session.patch(BASE_URL + endpoint, headers=self.get_headers(), data=data)
+        resp = await self.session.patch(BASE_URL + endpoint, headers=self.get_headers(), data=data)
         return await resp.json()
